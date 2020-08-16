@@ -12,9 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NavigationManager : NSObject
 
-+ (instancetype)shared;
-
 @property (nonatomic, strong) RCTBridge *bridge;
+
++ (instancetype)shared;
+- (void)registerNativeModule:(NSString *)moduleName forController:(Class)clazz;
+- (BOOL)hasNativeModule:(NSString *)moduleName;
+- (Class)nativeModuleClassFromName:(NSString *)moduleName;
 
 @end
 

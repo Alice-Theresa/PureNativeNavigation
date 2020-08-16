@@ -1,13 +1,21 @@
 import React from 'react'
 import { View, NativeModules, Button } from 'react-native'
 
-const Tab = () => {
+const Tab2 = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
       <Button
         title="push detail"
         onPress={() => {
           NativeModules.NavigationBridge.push('Tab2', {
+            backgroundColor: 'red'
+          })
+        }}
+      />
+      <Button
+        title="push native"
+        onPress={() => {
+          NativeModules.NavigationBridge.push('NativeViewController', {
             backgroundColor: 'red'
           })
         }}
@@ -46,4 +54,4 @@ const Tab = () => {
   )
 }
 
-export default Tab
+export default Tab2

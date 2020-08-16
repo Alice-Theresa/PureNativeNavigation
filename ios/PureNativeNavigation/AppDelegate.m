@@ -13,6 +13,7 @@
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
 #import "NavigationManager.h"
+#import "ThisIsViewController.h"
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -34,11 +35,12 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 
   [NavigationManager shared].bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  [[NavigationManager shared] registerNativeModule:@"NativeViewController" forController:[ThisIsViewController class]];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIStoryboard *storyboard =  [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
   UIViewController *rootViewController = [storyboard instantiateInitialViewController];
-  self.window.windowLevel = UIWindowLevelStatusBar + 1;
+  self.window.windowLevel = UIWindowLevelStatusBar;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
