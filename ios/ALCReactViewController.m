@@ -1,23 +1,23 @@
 //
-//  ALCNativeViewController.m
+//  ALCReactViewController.m
 //  PureNativeNavigation
 //
-//  Created by Skylar on 2020/8/16.
+//  Created by skylar on 2020/8/17.
 //
 
-#import "ALCNativeViewController.h"
+#import "ALCReactViewController.h"
 
-@interface ALCNativeViewController ()
+@interface ALCReactViewController ()
 
 @property (nonatomic, assign) BOOL hideNavigationBar;
 
 @end
 
-@implementation ALCNativeViewController
+@implementation ALCReactViewController
 
 - (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props options:(NSDictionary *)options {
     if (self = [super initWithNibName:nil bundle:nil]) {
-        _pageName = pageName;
+//        _pageName = pageName;
         NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
         _hideNavigationBar = hideNavigationBar.boolValue;
     }
@@ -28,5 +28,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
 }
+
 
 @end

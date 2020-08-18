@@ -1,25 +1,25 @@
 //
-//  NavigationManager.m
+//  ALCNavigationManager.m
 //  router
 //
 //  Created by Skylar on 2020/8/15.
 //
 
-#import "NavigationManager.h"
+#import "ALCNavigationManager.h"
 
-@interface NavigationManager()
+@interface ALCNavigationManager()
 
 @property(nonatomic, strong) NSMutableDictionary *nativeModules;
 
 @end
 
-@implementation NavigationManager
+@implementation ALCNavigationManager
 
 + (instancetype)shared {
-    static NavigationManager *manager;
+    static ALCNavigationManager *manager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[NavigationManager alloc] init];
+        manager = [[ALCNavigationManager alloc] init];
     });
     return manager;
 }
@@ -40,7 +40,7 @@
 }
 
 - (Class)nativeModuleClassFromName:(NSString *)moduleName {
-    return [_nativeModules objectForKey:moduleName];
+    return [self.nativeModules objectForKey:moduleName];
 }
 
 

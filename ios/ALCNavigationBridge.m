@@ -1,20 +1,22 @@
 //
-//  NavigationBridge.m
+//  ALCNavigationBridge.m
 //  router
 //
 //  Created by Skylar on 2020/8/15.
 //
 
-#import "NavigationBridge.h"
+#import "ALCNavigationBridge.h"
 #import <React/RCTRootView.h>
-#import "NavigationManager.h"
+#import <React/RCTConvert.h>
+#import "ALCNavigationManager.h"
 #import <React/RCTView.h>
 #import <React/RCTLog.h>
 #import "ALCNativeViewController.h"
+#import "ALCReactViewController.h"
 
-@implementation NavigationBridge
+@implementation ALCNavigationBridge
 
-RCT_EXPORT_MODULE(NavigationBridge)
+RCT_EXPORT_MODULE(ALCNavigationBridge)
 
 + (BOOL)requiresMainQueueSetup {
     return YES;
@@ -31,23 +33,26 @@ RCT_EXPORT_MODULE(NavigationBridge)
 RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
     NSDictionary *root = rootTree[@"root"];
     NSArray *tabs = root[@"tabs"][@"children"];
-    
+
     NSMutableArray *controllers = [NSMutableArray array];
     for (NSDictionary *tab in tabs) {
-      NSString *name = tab[@"name"];
-      NSDictionary *options = tab[@"options"];
-      RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[NavigationManager shared].bridge
-                                                       moduleName:name
-                                                initialProperties:nil];
-      UIViewController *viewController = [UIViewController new];
-      viewController.view = rootView;
-      UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
-      nav.title = name;
-      NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
-      if (hideNavigationBar.boolValue == YES) {
-        nav.navigationBarHidden = YES;
-      }
-      [controllers addObject:nav];
+        NSString *component = tab[@"component"];
+        NSString *title = tab[@"title"];
+        NSDictionary *icon = tab[@"icon"];
+        NSDictionary *options = tab[@"options"];
+        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[ALCNavigationManager shared].bridge
+                                                           moduleName:component
+                                                    initialProperties:nil];
+        UIViewController *viewController = [ALCReactViewController new];
+        viewController.view = rootView;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+        nav.title = title;
+        nav.tabBarItem.image = [self fetchImage:icon];
+        NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
+        if (hideNavigationBar.boolValue == YES) {
+            nav.navigationBarHidden = YES;
+        }
+        [controllers addObject:nav];
     }
     UITabBarController *tbc = [[UITabBarController alloc] init];
     tbc.viewControllers = controllers;
@@ -82,11 +87,7 @@ RCT_EXPORT_METHOD(present:(NSString *)pageName params:(NSDictionary *)params) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[NavigationManager shared].bridge
-                                                     moduleName:pageName
-                                              initialProperties:params];
-    UIViewController *viewController = [UIViewController new];
-    viewController.view = rootView;
+    UIViewController *viewController = [self fetchViewController:pageName params:params];
     [nav presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -96,7 +97,7 @@ RCT_EXPORT_METHOD(dismiss) {
     [tbc dismissViewControllerAnimated:YES completion:nil];
 }
 
-RCT_EXPORT_METHOD(switchTab:(NSNumber *)index) {
+RCT_EXPORT_METHOD(switchTab:(NSNumber * __nonnull)index) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     tbc.selectedIndex = index.integerValue;
@@ -116,20 +117,24 @@ RCT_EXPORT_METHOD(logRoute) {
     NSLog(@"%@", route);
 }
 
-- (UIViewController *)fetchViewController:(NSString *)pageName  params:(NSDictionary *)params {
-  BOOL hasNativeVC = [[NavigationManager shared] hasNativeModule:pageName];
-  UIViewController *vc;
-  if (hasNativeVC) {
-    Class clazz = [[NavigationManager shared] nativeModuleClassFromName:pageName];
-    vc = [[clazz alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
-  } else {
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[NavigationManager shared].bridge
-                                                     moduleName:pageName
-                                              initialProperties:params];
-    vc = [UIViewController new];
-    vc.view = rootView;
-  }
-  return vc;
+- (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary *)params {
+    BOOL hasNativeVC = [[ALCNavigationManager shared] hasNativeModule:pageName];
+    UIViewController *vc;
+    if (hasNativeVC) {
+        Class clazz = [[ALCNavigationManager shared] nativeModuleClassFromName:pageName];
+        vc = [[clazz alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
+    } else {
+        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[ALCNavigationManager shared].bridge
+                                                         moduleName:pageName
+                                                  initialProperties:params];
+        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
+        vc.view = rootView;
+    }
+    return vc;
+}
+
+- (UIImage *)fetchImage:(NSDictionary *)json {
+  return [RCTConvert UIImage:json];
 }
 
 @end

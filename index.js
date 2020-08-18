@@ -2,29 +2,30 @@
  * @format
  */
 
-import { AppRegistry, NativeModules } from 'react-native'
-import App from './App'
-import Tab2 from './src/Tab2'
-import Tab3 from './src/Tab3'
+import { AppRegistry, NativeModules, Image } from 'react-native'
+import Home from './src/Home'
+import Setting from './src/Setting'
 import Detail from './src/Detail'
+import Present from './src/Present'
 
-AppRegistry.registerComponent('Tab1', () => App)
-AppRegistry.registerComponent('Tab2', () => Tab2)
-AppRegistry.registerComponent('Tab3', () => Tab3)
+AppRegistry.registerComponent('Home', () => Home)
+AppRegistry.registerComponent('Setting', () => Setting)
 AppRegistry.registerComponent('Detail', () => Detail)
+AppRegistry.registerComponent('Present', () => Present)
 
-NativeModules.NavigationBridge.setRoot({
+NativeModules.ALCNavigationBridge.setRoot({
   root: {
     tabs: {
       children: [
         {
-          name: 'Tab1'
+          component: 'Home',
+          title: '主页',
+          icon: Image.resolveAssetSource(require('./src/image/Home.png'))
         },
         {
-          name: 'Tab2'
-        },
-        {
-          name: 'Tab3',
+          component: 'Setting',
+          title: '设置',
+          icon: Image.resolveAssetSource(require('./src/image/Profile.png')),
           options: {
             hideNavigationBar: true
           }
