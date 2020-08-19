@@ -5,12 +5,17 @@
 //  Created by Skylar on 2020/8/15.
 //
 
+#import <React/RCTLog.h>
+#import <React/RCTConvert.h>
+#import <React/RCTRootView.h>
 #import "ALCNavigationManager.h"
+#import "ALCNativeViewController.h"
+#import "ALCReactViewController.h"
 
 @interface ALCNavigationManager()
 
-@property(nonatomic, strong) NSMutableDictionary *nativeModules;
-@property(nonatomic, strong) NSMutableDictionary *reactModules;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *nativeModules;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *reactModules;
 
 @end
 
@@ -57,5 +62,25 @@
     return [self.reactModules objectForKey:moduleName];
 }
 
+- (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary * __nullable)params {
+    BOOL hasNativeVC = [self hasNativeModule:pageName];
+    UIViewController *vc;
+    if (hasNativeVC) {
+        Class clazz = [self nativeModuleClassFromName:pageName];
+        vc = [[clazz alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
+    } else {
+        NSDictionary *options = [self reactModuleOptionsForKey:pageName];
+        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
+                                                         moduleName:pageName
+                                                  initialProperties:params];
+        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params[@"props"] options:options];
+        vc.view = rootView;
+    }
+    return vc;
+}
+
+- (UIImage *)fetchImage:(NSDictionary *)json {
+  return [RCTConvert UIImage:json];
+}
 
 @end

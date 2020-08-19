@@ -6,6 +6,7 @@
 //
 
 #import "ThisIsViewController.h"
+#import "ALCNavigationManager.h"
 
 @interface ThisIsViewController ()
 
@@ -16,17 +17,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor yellowColor];
-    self.title = self.pageName;
+    self.title = @"Native VC";
+    UIButton *push = [UIButton buttonWithType:UIButtonTypeSystem];
+    [push setTitle:@"push RN" forState:UIControlStateNormal];
+    push.center = self.view.center;
+    push.bounds = CGRectMake(0, 0, 200, 120);
+    [push addTarget:self action:@selector(go2RN) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:push];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)go2RN {
+    UIViewController *vc = [[ALCNavigationManager shared] fetchViewController:@"Detail" params:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-*/
 
 @end

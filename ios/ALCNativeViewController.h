@@ -11,8 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ALCNativeViewController : UIViewController
 
-@property (nonatomic, strong) NSString *pageName;
-
 - (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props options:(NSDictionary *)options;
 
 @end

@@ -17,7 +17,6 @@
 
 - (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props options:(NSDictionary *)options {
     if (self = [super initWithNibName:nil bundle:nil]) {
-        _pageName = pageName;
         NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
         _hideNavigationBar = hideNavigationBar.boolValue;
     }

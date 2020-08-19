@@ -6,13 +6,9 @@
 //
 
 #import "ALCNavigationBridge.h"
-#import <React/RCTRootView.h>
 #import <React/RCTConvert.h>
 #import "ALCNavigationManager.h"
 #import <React/RCTView.h>
-#import <React/RCTLog.h>
-#import "ALCNativeViewController.h"
-#import "ALCReactViewController.h"
 
 @interface  ALCNavigationBridge ()
 
@@ -51,10 +47,10 @@ RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
         NSString *component = tab[@"component"];
         NSString *title = tab[@"title"];
         NSDictionary *icon = tab[@"icon"];
-        UIViewController *viewController = [self fetchViewController:component params:nil];
+        UIViewController *viewController = [self.manager fetchViewController:component params:nil];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         nav.title = title;
-        nav.tabBarItem.image = [self fetchImage:icon];
+        nav.tabBarItem.image = [self.manager fetchImage:icon];
         [controllers addObject:nav];
     }
     UITabBarController *tbc = [[UITabBarController alloc] init];
@@ -67,7 +63,7 @@ RCT_EXPORT_METHOD(push:(NSString *)pageName params:(NSDictionary *)params) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
-    UIViewController *viewController = [self fetchViewController:pageName params:params];
+    UIViewController *viewController = [self.manager fetchViewController:pageName params:params];
     viewController.hidesBottomBarWhenPushed  = YES;
     [nav pushViewController:viewController animated:true];
 }
@@ -90,7 +86,7 @@ RCT_EXPORT_METHOD(present:(NSString *)pageName params:(NSDictionary *)params) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
-    UIViewController *viewController = [self fetchViewController:pageName params:params];
+    UIViewController *viewController = [self.manager fetchViewController:pageName params:params];
     [nav presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -110,25 +106,6 @@ RCT_EXPORT_METHOD(registerReactComponent:(NSString *)appKey options:(NSDictionar
     [self.manager registerReactModule:appKey options:options];
 }
 
-- (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary *)params {
-    BOOL hasNativeVC = [self.manager hasNativeModule:pageName];
-    UIViewController *vc;
-    if (hasNativeVC) {
-        Class clazz = [self.manager nativeModuleClassFromName:pageName];
-        vc = [[clazz alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
-    } else {
-        NSDictionary *options = [self.manager reactModuleOptionsForKey:pageName];
-        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.manager.bridge
-                                                         moduleName:pageName
-                                                  initialProperties:params];
-        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params[@"props"] options:options];
-        vc.view = rootView;
-    }
-    return vc;
-}
 
-- (UIImage *)fetchImage:(NSDictionary *)json {
-  return [RCTConvert UIImage:json];
-}
 
 @end

@@ -8,11 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridge.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface ALCNavigationManager : NSObject
 
 @property (nonatomic, strong) RCTBridge *bridge;
+
+@property (nonatomic, strong, readonly) NSMutableDictionary *nativeModules;
+@property (nonatomic, strong, readonly) NSMutableDictionary *reactModules;
 
 + (instancetype)shared;
 
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)hasReactModuleForName:(NSString *)moduleName;
 - (NSDictionary *)reactModuleOptionsForKey:(NSString *)moduleName;
 
-@end
+- (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary *)params;
+- (UIImage *)fetchImage:(NSDictionary *)json;
 
-NS_ASSUME_NONNULL_END
+@end

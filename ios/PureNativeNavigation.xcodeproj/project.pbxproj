@@ -71,7 +71,7 @@
 		94598DDB24EA87A0000825E1 /* ALCReactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCReactViewController.h; sourceTree = "<group>"; };
 		94598DDC24EA87A0000825E1 /* ALCReactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALCReactViewController.m; sourceTree = "<group>"; };
 		94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThisIsViewController.h; sourceTree = "<group>"; };
-		94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThisIsViewController.m; sourceTree = "<group>"; };
+		94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ThisIsViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		94D44BB424E910B8009E5FA9 /* ALCNativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCNativeViewController.h; sourceTree = "<group>"; };
 		94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCNativeViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		9A968FB15FBCC56031729861 /* libPods-PureNativeNavigation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PureNativeNavigation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
