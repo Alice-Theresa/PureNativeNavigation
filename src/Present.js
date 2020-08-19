@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, NativeModules, Button, Text } from 'react-native'
+import { View, Button, Text } from 'react-native'
 
-const NavigationBridge = NativeModules.ALCNavigationBridge
+import { Navigatior } from '../index'
 
 const Present = (props) => {
   console.log(props)
@@ -11,7 +11,7 @@ const Present = (props) => {
       <Button
         title="dismiss"
         onPress={() => {
-          NavigationBridge.dismiss()
+          Navigatior.dismiss()
         }}
       />
     </View>

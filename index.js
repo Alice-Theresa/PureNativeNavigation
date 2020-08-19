@@ -23,7 +23,7 @@ registerComponent('Detail', Detail)
 registerComponent('Present', Present)
 registerComponent('NoNavigationBar', NoNavigationBar)
 
-NativeModules.ALCNavigationBridge.setRoot({
+NavigationBridge.setRoot({
   root: {
     tabs: {
       children: [
@@ -41,3 +41,29 @@ NativeModules.ALCNavigationBridge.setRoot({
     }
   }
 })
+
+export class Navigatior {
+  static push = (component, options) => {
+    NavigationBridge.push(component, options)
+  }
+
+  static pop = () => {
+    NavigationBridge.pop()
+  }
+
+  static popToRoot = () => {
+    NavigationBridge.popToRoot()
+  }
+
+  static present = () => {
+    NavigationBridge.present(component)
+  }
+
+  static dismiss = () => {
+    NavigationBridge.dismiss()
+  }
+
+  static switchTab = (index) => {
+    NavigationBridge.switchTab(index)
+  }
+}

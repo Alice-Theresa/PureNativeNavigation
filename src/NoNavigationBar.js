@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, NativeModules, Button } from 'react-native'
+import { View, Button } from 'react-native'
 
-const NavigationBridge = NativeModules.ALCNavigationBridge
+import { Navigatior } from '../index'
 
 const NoNavigationBar = () => {
   return (
@@ -9,25 +9,25 @@ const NoNavigationBar = () => {
       <Button
         title="push detail and hide bar"
         onPress={() => {
-          NavigationBridge.push('NoNavigationBar', {})
+          Navigatior.push('NoNavigationBar')
         }}
       />
       <Button
         title="push detail"
         onPress={() => {
-          NavigationBridge.push('Detail', {})
+          Navigatior.push('Detail')
         }}
       />
       <Button
         title="pop"
         onPress={() => {
-          NavigationBridge.pop()
+          Navigatior.pop()
         }}
       />
       <Button
         title="pop to root"
         onPress={() => {
-          NavigationBridge.popToRoot()
+          Navigatior.popToRoot()
         }}
       />
     </View>

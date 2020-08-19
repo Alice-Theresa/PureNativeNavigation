@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, NativeModules, Button } from 'react-native'
 
-const NavigationBridge = NativeModules.ALCNavigationBridge
+import { Navigatior } from '../index'
 
 const Setting = () => {
   return (
@@ -9,13 +9,13 @@ const Setting = () => {
       <Button
         title="switch tab"
         onPress={() => {
-          NavigationBridge.switchTab(0)
+          Navigatior.switchTab(0)
         }}
       />
       <Button
         title="push native"
         onPress={() => {
-          NavigationBridge.push('NativeViewController', {
+          Navigatior.push('NativeViewController', {
             options: {
               hideNavigationBar: true
             }
@@ -25,7 +25,7 @@ const Setting = () => {
       <Button
         title="push detail"
         onPress={() => {
-          NavigationBridge.push('Detail', {
+          Navigatior.push('Detail', {
             options: {
               hideNavigationBar: false
             }
