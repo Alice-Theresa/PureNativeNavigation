@@ -15,9 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) RCTBridge *bridge;
 
 + (instancetype)shared;
+
 - (void)registerNativeModule:(NSString *)moduleName forController:(Class)clazz;
 - (BOOL)hasNativeModule:(NSString *)moduleName;
 - (Class)nativeModuleClassFromName:(NSString *)moduleName;
+
+- (void)registerReactModule:(NSString *)moduleName options:(NSDictionary *)options;
+- (BOOL)hasReactModuleForName:(NSString *)moduleName;
+- (NSDictionary *)reactModuleOptionsForKey:(NSString *)moduleName;
 
 @end
 

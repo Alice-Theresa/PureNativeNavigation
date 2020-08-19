@@ -3,9 +3,9 @@ import { View, NativeModules, Button } from 'react-native'
 
 const NavigationBridge = NativeModules.ALCNavigationBridge
 
-const Home = () => {
+const NoNavigationBar = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Button
         title="push detail and hide bar"
         onPress={() => {
@@ -19,25 +19,24 @@ const Home = () => {
         }}
       />
       <Button
-        title="push native"
+        title="pop"
         onPress={() => {
-          NavigationBridge.push('NativeViewController', {})
+          NavigationBridge.pop()
         }}
       />
-
       <Button
-        title="present"
+        title="pop to root"
         onPress={() => {
-          NavigationBridge.present('Present', {})
+          NavigationBridge.popToRoot()
         }}
       />
     </View>
   )
 }
 
-Home.navigationItem = {
-  title: 'Home',
-  hideNavigationBar: false
+NoNavigationBar.navigationItem = {
+  title: 'Detail',
+  hideNavigationBar: true
 }
 
-export default Home
+export default NoNavigationBar

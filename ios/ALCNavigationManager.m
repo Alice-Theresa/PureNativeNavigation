@@ -10,6 +10,7 @@
 @interface ALCNavigationManager()
 
 @property(nonatomic, strong) NSMutableDictionary *nativeModules;
+@property(nonatomic, strong) NSMutableDictionary *reactModules;
 
 @end
 
@@ -27,6 +28,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _nativeModules = [[NSMutableDictionary alloc] init];
+        _reactModules = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -36,11 +38,23 @@
 }
 
 - (BOOL)hasNativeModule:(NSString *)moduleName {
-    return  [self.nativeModules objectForKey:moduleName] != nil;
+    return [self.nativeModules objectForKey:moduleName] != nil;
 }
 
 - (Class)nativeModuleClassFromName:(NSString *)moduleName {
     return [self.nativeModules objectForKey:moduleName];
+}
+
+- (void)registerReactModule:(NSString *)moduleName options:(NSDictionary *)options {
+    [self.reactModules setObject:options forKey:moduleName];
+}
+
+- (BOOL)hasReactModuleForName:(NSString *)moduleName {
+    return [self.reactModules objectForKey:moduleName] != nil;
+}
+
+- (NSDictionary *)reactModuleOptionsForKey:(NSString *)moduleName {
+    return [self.reactModules objectForKey:moduleName];
 }
 
 

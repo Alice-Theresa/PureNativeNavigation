@@ -1,15 +1,15 @@
-import React from 'react';
-import { View, NativeModules, Button } from 'react-native';
+import React from 'react'
+import { View, NativeModules, Button } from 'react-native'
 
-const NavigationBridge = NativeModules.ALCNavigationBridge;
+const NavigationBridge = NativeModules.ALCNavigationBridge
 
-const Tab3 = () => {
+const Setting = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
       <Button
         title="switch tab"
         onPress={() => {
-          NavigationBridge.switchTab(0);
+          NavigationBridge.switchTab(0)
         }}
       />
       <Button
@@ -17,9 +17,9 @@ const Tab3 = () => {
         onPress={() => {
           NavigationBridge.push('NativeViewController', {
             options: {
-              hideNavigationBar: true,
-            },
-          });
+              hideNavigationBar: true
+            }
+          })
         }}
       />
       <Button
@@ -27,13 +27,17 @@ const Tab3 = () => {
         onPress={() => {
           NavigationBridge.push('Detail', {
             options: {
-              hideNavigationBar: false,
-            },
-          });
+              hideNavigationBar: false
+            }
+          })
         }}
       />
     </View>
-  );
-};
+  )
+}
 
-export default Tab3;
+Setting.navigationItem = {
+  hideNavigationBar: true
+}
+
+export default Setting

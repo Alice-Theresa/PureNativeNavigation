@@ -7,11 +7,21 @@ import Home from './src/Home'
 import Setting from './src/Setting'
 import Detail from './src/Detail'
 import Present from './src/Present'
+import NoNavigationBar from './src/NoNavigationBar'
 
-AppRegistry.registerComponent('Home', () => Home)
-AppRegistry.registerComponent('Setting', () => Setting)
-AppRegistry.registerComponent('Detail', () => Detail)
-AppRegistry.registerComponent('Present', () => Present)
+const NavigationBridge = NativeModules.ALCNavigationBridge
+
+const registerComponent = (appKey, WrappedComponent) => {
+  let options = WrappedComponent.navigationItem || {}
+  NavigationBridge.registerReactComponent(appKey, options)
+  AppRegistry.registerComponent(appKey, () => WrappedComponent)
+}
+
+registerComponent('Home', Home)
+registerComponent('Setting', Setting)
+registerComponent('Detail', Detail)
+registerComponent('Present', Present)
+registerComponent('NoNavigationBar', NoNavigationBar)
 
 NativeModules.ALCNavigationBridge.setRoot({
   root: {
@@ -25,10 +35,7 @@ NativeModules.ALCNavigationBridge.setRoot({
         {
           component: 'Setting',
           title: '设置',
-          icon: Image.resolveAssetSource(require('./src/image/Profile.png')),
-          options: {
-            hideNavigationBar: true
-          }
+          icon: Image.resolveAssetSource(require('./src/image/Profile.png'))
         }
       ]
     }

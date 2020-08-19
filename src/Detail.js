@@ -3,28 +3,19 @@ import { View, NativeModules, Button } from 'react-native'
 
 const NavigationBridge = NativeModules.ALCNavigationBridge
 
-const Detail = (props) => {
-  console.log(props)
+const Detail = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Button
         title="push detail and hide bar"
         onPress={() => {
-          NavigationBridge.push('Detail', {
-            options: {
-              hideNavigationBar: true
-            }
-          })
+          NavigationBridge.push('NoNavigationBar', {})
         }}
       />
       <Button
         title="push detail"
         onPress={() => {
-          NavigationBridge.push('Detail', {
-            options: {
-              hideNavigationBar: false
-            }
-          })
+          NavigationBridge.push('Detail', {})
         }}
       />
       <Button
@@ -41,6 +32,11 @@ const Detail = (props) => {
       />
     </View>
   )
+}
+
+Detail.navigationItem = {
+  title: 'Detail',
+  hideNavigationBar: false
 }
 
 export default Detail

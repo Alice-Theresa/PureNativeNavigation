@@ -14,9 +14,22 @@
 #import "ALCNativeViewController.h"
 #import "ALCReactViewController.h"
 
+@interface  ALCNavigationBridge ()
+
+@property (nonatomic, strong) ALCNavigationManager *manager;
+
+@end
+
 @implementation ALCNavigationBridge
 
 RCT_EXPORT_MODULE(ALCNavigationBridge)
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _manager = [ALCNavigationManager shared];
+    }
+    return self;
+}
 
 + (BOOL)requiresMainQueueSetup {
     return YES;
@@ -33,25 +46,15 @@ RCT_EXPORT_MODULE(ALCNavigationBridge)
 RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
     NSDictionary *root = rootTree[@"root"];
     NSArray *tabs = root[@"tabs"][@"children"];
-
     NSMutableArray *controllers = [NSMutableArray array];
     for (NSDictionary *tab in tabs) {
         NSString *component = tab[@"component"];
         NSString *title = tab[@"title"];
         NSDictionary *icon = tab[@"icon"];
-        NSDictionary *options = tab[@"options"];
-        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[ALCNavigationManager shared].bridge
-                                                           moduleName:component
-                                                    initialProperties:nil];
-        UIViewController *viewController = [ALCReactViewController new];
-        viewController.view = rootView;
+        UIViewController *viewController = [self fetchViewController:component params:nil];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         nav.title = title;
         nav.tabBarItem.image = [self fetchImage:icon];
-        NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
-        if (hideNavigationBar.boolValue == YES) {
-            nav.navigationBarHidden = YES;
-        }
         [controllers addObject:nav];
     }
     UITabBarController *tbc = [[UITabBarController alloc] init];
@@ -103,31 +106,22 @@ RCT_EXPORT_METHOD(switchTab:(NSNumber * __nonnull)index) {
     tbc.selectedIndex = index.integerValue;
 }
 
-RCT_EXPORT_METHOD(logRoute) {
-    UIWindow *window = RCTSharedApplication().delegate.window;
-    UITabBarController *tbc = (UITabBarController *)window.rootViewController;
-    
-    NSMutableArray *route = [NSMutableArray array];
-    
-    NSLog(@"%@", tbc.selectedViewController);
-    [route addObject:[NSString stringWithFormat:@"%@", tbc.selectedViewController.title]];
-    for (UIViewController *vc in tbc.selectedViewController.childViewControllers) {
-      [route addObject:[NSString stringWithFormat:@"%@", vc.title]];
-    }
-    NSLog(@"%@", route);
+RCT_EXPORT_METHOD(registerReactComponent:(NSString *)appKey options:(NSDictionary *)options) {
+    [self.manager registerReactModule:appKey options:options];
 }
 
 - (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary *)params {
-    BOOL hasNativeVC = [[ALCNavigationManager shared] hasNativeModule:pageName];
+    BOOL hasNativeVC = [self.manager hasNativeModule:pageName];
     UIViewController *vc;
     if (hasNativeVC) {
-        Class clazz = [[ALCNavigationManager shared] nativeModuleClassFromName:pageName];
+        Class clazz = [self.manager nativeModuleClassFromName:pageName];
         vc = [[clazz alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
     } else {
-        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[ALCNavigationManager shared].bridge
+        NSDictionary *options = [self.manager reactModuleOptionsForKey:pageName];
+        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.manager.bridge
                                                          moduleName:pageName
                                                   initialProperties:params];
-        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
+        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params[@"props"] options:options];
         vc.view = rootView;
     }
     return vc;
