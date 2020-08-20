@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, NativeModules, Button } from 'react-native'
+import { View, Button } from 'react-native'
 
 import { Navigatior } from '../index'
 
@@ -16,20 +16,14 @@ const Setting = () => {
         title="push native"
         onPress={() => {
           Navigatior.push('NativeViewController', {
-            options: {
-              hideNavigationBar: true
-            }
+            title: 'Native'
           })
         }}
       />
       <Button
         title="push detail"
         onPress={() => {
-          Navigatior.push('Detail', {
-            options: {
-              hideNavigationBar: false
-            }
-          })
+          Navigatior.push('Detail')
         }}
       />
     </View>

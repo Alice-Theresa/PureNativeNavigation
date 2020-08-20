@@ -16,8 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
-    self.title = @"Native VC";
+    self.view.backgroundColor = [UIColor whiteColor];
     UIButton *push = [UIButton buttonWithType:UIButtonTypeSystem];
     [push setTitle:@"push RN" forState:UIControlStateNormal];
     push.center = self.view.center;

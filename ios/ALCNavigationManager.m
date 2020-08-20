@@ -67,13 +67,13 @@
     UIViewController *vc;
     if (hasNativeVC) {
         Class clazz = [self nativeModuleClassFromName:pageName];
-        vc = [[clazz alloc] initWithModuleName:pageName props:params[@"props"] options:params[@"options"]];
+        vc = [[clazz alloc] initWithModuleName:pageName props:params];
     } else {
         NSDictionary *options = [self reactModuleOptionsForKey:pageName];
         RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
                                                          moduleName:pageName
                                                   initialProperties:params];
-        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params[@"props"] options:options];
+        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params options:options];
         vc.view = rootView;
     }
     return vc;

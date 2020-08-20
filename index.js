@@ -55,8 +55,8 @@ export class Navigatior {
     NavigationBridge.popToRoot()
   }
 
-  static present = () => {
-    NavigationBridge.present(component)
+  static present = (component, options) => {
+    NavigationBridge.present(component, options)
   }
 
   static dismiss = () => {

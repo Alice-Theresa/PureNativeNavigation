@@ -15,10 +15,9 @@
 
 @implementation ALCNativeViewController
 
-- (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props options:(NSDictionary *)options {
-    if (self = [super initWithNibName:nil bundle:nil]) {
-        NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
-        _hideNavigationBar = hideNavigationBar.boolValue;
+- (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props {
+    if (self = [super init]) {
+        self.title = props[@"title"];
     }
     return self;
 }
