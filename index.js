@@ -11,10 +11,10 @@ import NoNavigationBar from './src/NoNavigationBar'
 
 const NavigationBridge = NativeModules.ALCNavigationBridge
 
-const registerComponent = (appKey, WrappedComponent) => {
-  let options = WrappedComponent.navigationItem || {}
+const registerComponent = (appKey, component) => {
+  let options = component.navigationItem || {}
   NavigationBridge.registerReactComponent(appKey, options)
-  AppRegistry.registerComponent(appKey, () => WrappedComponent)
+  AppRegistry.registerComponent(appKey, () => component)
 }
 
 registerComponent('Home', Home)

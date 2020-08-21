@@ -73,7 +73,7 @@
         RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
                                                          moduleName:pageName
                                                   initialProperties:params];
-        vc = [[ALCReactViewController alloc] initWithModuleName:pageName props:params options:options];
+        vc = [[ALCReactViewController alloc] initWithModuleName:pageName options:options];
         vc.view = rootView;
     }
     return vc;

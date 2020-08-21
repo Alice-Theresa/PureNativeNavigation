@@ -15,7 +15,7 @@
 
 @implementation ALCReactViewController
 
-- (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props options:(NSDictionary *)options {
+- (instancetype)initWithModuleName:(NSString *)pageName options:(NSDictionary *)options {
     if (self = [super init]) {
         NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
         _hideNavigationBar = hideNavigationBar.boolValue;

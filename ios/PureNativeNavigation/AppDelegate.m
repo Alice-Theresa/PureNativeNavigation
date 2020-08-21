@@ -34,8 +34,10 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
-  [ALCNavigationManager shared].bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-  [[ALCNavigationManager shared] registerNativeModule:@"NativeViewController" forController:[ThisIsViewController class]];
+  [ALCNavigationManager shared].bridge = [[RCTBridge alloc] initWithDelegate:self
+                                                               launchOptions:launchOptions];
+  [[ALCNavigationManager shared] registerNativeModule:@"NativeViewController"
+                                        forController:[ThisIsViewController class]];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];

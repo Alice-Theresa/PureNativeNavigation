@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ALCReactViewController : UIViewController
 
-- (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props options:(NSDictionary *)options;
+- (instancetype)initWithModuleName:(NSString *)pageName options:(NSDictionary *)options;
 
 @end
 
