@@ -21,11 +21,13 @@ const Home = () => {
       <Button
         title="push native"
         onPress={() => {
-          Navigatior.push('NativeViewController')
+          Navigatior.push('NativeViewController', {
+            title: 'Native'
+          })
         }}
       />
 
-      <Button
+      <Button 
         title="present"
         onPress={() => {
           Navigatior.present('Present')
