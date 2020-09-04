@@ -83,4 +83,13 @@
   return [RCTConvert UIImage:json];
 }
 
++ (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data {
+    ALCNavigationManager *manager = [ALCNavigationManager shared];
+    RCTBridge *bride = manager.bridge;
+    if (bride.valid) {
+        RCTEventEmitter *emitter = [bride moduleForName:@"ALCNavigationBridge"];
+        [emitter sendEventWithName:eventName body:data];
+    }
+}
+
 @end

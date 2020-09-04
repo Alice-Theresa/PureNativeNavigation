@@ -6,6 +6,7 @@
 //
 
 #import "ALCNativeViewController.h"
+#import "ALCNavigationManager.h"
 
 @interface ALCNativeViewController ()
 
@@ -25,6 +26,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
+}
+
+- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
+    [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
+     @{
+       @"KEY_ON": @0,
+       @"KEY_REQUEST_CODE": @(requestCode),
+       @"KEY_RESULT_CODE": @(resultCode),
+       @"KEY_RESULT_DATA": data ?: [NSNull null],
+     }];
 }
 
 @end

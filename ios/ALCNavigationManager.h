@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <React/RCTBridge.h>
+#import <React/RCTEventEmitter.h>
 
 @interface ALCNavigationManager : NSObject
 
@@ -27,5 +28,8 @@
 
 - (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary *)params;
 - (UIImage *)fetchImage:(NSDictionary *)json;
+
+
++ (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data;
 
 @end

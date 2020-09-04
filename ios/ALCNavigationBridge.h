@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ALCNavigationBridge : RCTEventEmitter <RCTBridgeModule>
 
+
 @end
 
 NS_ASSUME_NONNULL_END

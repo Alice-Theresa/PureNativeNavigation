@@ -9,6 +9,9 @@
 #import <React/RCTConvert.h>
 #import "ALCNavigationManager.h"
 #import <React/RCTView.h>
+#import "UIViewController+ALC.h"
+
+#import "ALCReactViewController.h"
 
 @interface  ALCNavigationBridge ()
 
@@ -36,7 +39,7 @@ RCT_EXPORT_MODULE(ALCNavigationBridge)
 }
 
 - (NSArray<NSString *> *)supportedEvents {
-    return @[];
+    return @[@"EVENT_NAVIGATION"];
 }
 
 RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
@@ -59,6 +62,13 @@ RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
     window.rootViewController = tbc;
 }
 
+RCT_EXPORT_METHOD(setResult:(NSString *)sceneId resultCode:(NSInteger)resultCode data:(NSDictionary *)data) {
+    UIWindow *window = RCTSharedApplication().delegate.window;
+    UITabBarController *tbc = (UITabBarController *)window.rootViewController;
+    UINavigationController *nav = tbc.selectedViewController;
+    [nav.topViewController setResultCode:resultCode resultData:data];
+}
+
 RCT_EXPORT_METHOD(push:(NSString *)pageName params:(NSDictionary *)params) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
@@ -72,6 +82,7 @@ RCT_EXPORT_METHOD(pop) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
+    [nav.topViewController didReceiveResultCode:0 resultData:@{} requestCode:0];
     [nav popViewControllerAnimated:YES];
 }
 

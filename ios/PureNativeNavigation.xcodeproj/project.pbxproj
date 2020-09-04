@@ -22,6 +22,7 @@
 		9444B8EF24E8E94300A4AFE2 /* ALCNavigationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9444B8EB24E8E94200A4AFE2 /* ALCNavigationBridge.m */; };
 		9444B8F024E8E94300A4AFE2 /* ALCNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9444B8EC24E8E94200A4AFE2 /* ALCNavigationManager.m */; };
 		94598DDD24EA87A0000825E1 /* ALCReactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94598DDC24EA87A0000825E1 /* ALCReactViewController.m */; };
+		9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9468E9502502309900ED0422 /* UIViewController+ALC.m */; };
 		94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */; };
 		94D44BB624E910B8009E5FA9 /* ALCNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */; };
 		BC6AEF44E924984D76BA7E4E /* libPods-PureNativeNavigation-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B29380FCF7AC5FE5A95F25C /* libPods-PureNativeNavigation-tvOSTests.a */; };
@@ -70,6 +71,8 @@
 		9444B8EE24E8E94300A4AFE2 /* ALCNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALCNavigationManager.h; sourceTree = "<group>"; };
 		94598DDB24EA87A0000825E1 /* ALCReactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCReactViewController.h; sourceTree = "<group>"; };
 		94598DDC24EA87A0000825E1 /* ALCReactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALCReactViewController.m; sourceTree = "<group>"; };
+		9468E94F2502309900ED0422 /* UIViewController+ALC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ALC.h"; sourceTree = "<group>"; };
+		9468E9502502309900ED0422 /* UIViewController+ALC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ALC.m"; sourceTree = "<group>"; };
 		94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThisIsViewController.h; sourceTree = "<group>"; };
 		94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ThisIsViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		94D44BB424E910B8009E5FA9 /* ALCNativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCNativeViewController.h; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */,
 				94598DDB24EA87A0000825E1 /* ALCReactViewController.h */,
 				94598DDC24EA87A0000825E1 /* ALCReactViewController.m */,
+				9468E94F2502309900ED0422 /* UIViewController+ALC.h */,
+				9468E9502502309900ED0422 /* UIViewController+ALC.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -318,6 +323,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 2STDV5X89Q;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -593,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */,
 				94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */,
 				94598DDD24EA87A0000825E1 /* ALCReactViewController.m in Sources */,
 				9444B8EF24E8E94300A4AFE2 /* ALCNavigationBridge.m in Sources */,
@@ -685,6 +692,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2STDV5X89Q;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PureNativeNavigation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -708,6 +716,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2STDV5X89Q;
 				INFOPLIST_FILE = PureNativeNavigation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

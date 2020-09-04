@@ -14,20 +14,24 @@ const Home = () => {
       />
       <Button
         title="push detail"
-        onPress={() => {
-          Navigatior.push('Detail')
+        onPress={async () => {
+          const resp = await Navigatior.push('Detail')
+          console.warn('----')
+          console.warn(resp)
         }}
       />
       <Button
         title="push native"
-        onPress={() => {
-          Navigatior.push('NativeViewController', {
+        onPress={async () => {
+          const resp = await Navigatior.push('NativeViewController', {
             title: 'Native'
           })
+          console.warn('----')
+          console.warn(resp)
         }}
       />
 
-      <Button 
+      <Button
         title="present"
         onPress={() => {
           Navigatior.present('Present')

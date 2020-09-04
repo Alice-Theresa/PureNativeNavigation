@@ -6,6 +6,8 @@
 //
 
 #import "ALCReactViewController.h"
+#import "ALCNavigationManager.h"
+#import "UIViewController+ALC.h"
 
 @interface ALCReactViewController ()
 
@@ -29,5 +31,14 @@
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
 }
 
+- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
+    [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
+     @{
+       @"KEY_ON": @"ON_COMPONENT_RESULT",
+       @"KEY_REQUEST_CODE": @(requestCode),
+       @"KEY_RESULT_CODE": @(self.resultCode),
+       @"KEY_RESULT_DATA": self.resultData ?: [NSNull null],
+     }];
+}
 
 @end

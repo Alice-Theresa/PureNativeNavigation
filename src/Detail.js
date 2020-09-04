@@ -21,6 +21,7 @@ const Detail = () => {
       <Button
         title="pop"
         onPress={() => {
+          Navigatior.setResult(7, { qwe: 123 })
           Navigatior.pop()
         }}
       />
