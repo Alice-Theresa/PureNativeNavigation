@@ -8,6 +8,7 @@
 #import "ThisIsViewController.h"
 #import "ALCNavigationManager.h"
 #import "UIViewController+ALC.h"
+#import "UINavigationController+ALC.h"
 
 @interface ThisIsViewController ()
 
@@ -40,11 +41,11 @@
 
 - (void)pop {
     [self setResultCode:10 resultData:@{@"test": @"native"}];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController alc_popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
-    
+    NSLog(@"%@", data);
 }
 
 @end

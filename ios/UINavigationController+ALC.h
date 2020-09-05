@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UINavigationController (ALC)
 
+- (void)alc_popViewControllerAnimated:(BOOL)animated;
+
 @end
 
 NS_ASSUME_NONNULL_END
