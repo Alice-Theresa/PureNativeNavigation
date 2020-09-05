@@ -66,6 +66,10 @@ RCT_EXPORT_METHOD(setResult:(NSString *)sceneId resultCode:(NSInteger)resultCode
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
+//    if (nav.viewControllers.count > 1) {
+//        UIViewController *vc = nav.viewControllers[nav.viewControllers.count - 2];
+//        [vc setResultCode:resultCode resultData:data];
+//    }
     [nav.topViewController setResultCode:resultCode resultData:data];
 }
 
@@ -82,13 +86,12 @@ RCT_EXPORT_METHOD(pop) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
+    
     NSInteger resultCode = nav.topViewController.resultCode;
     NSInteger requestCode = nav.topViewController.requestCode;
     NSDictionary *resultData = nav.topViewController.resultData;
     [nav popViewControllerAnimated:YES];
-    [((id<ALCSetResultDelegate>)(nav.topViewController)) didReceiveResultCode:resultCode
-                                                                   resultData:resultData
-                                                                  requestCode:requestCode];
+    [nav.topViewController didReceiveResultCode:resultCode resultData:resultData requestCode:requestCode];
 }
 
 RCT_EXPORT_METHOD(popToRoot) {

@@ -28,6 +28,7 @@
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
 }
 
+
 - (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
     [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
      @{

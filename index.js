@@ -31,8 +31,7 @@ function withNavigator(moduleName) {
       const navigator = new Navigator(screenID, moduleName)
 
       useEffect(() => {
-        const subscription = EventEmitter.addListener('EVENT_NAVIGATION', (data) => {
-          
+        const subscription = EventEmitter.addListener('EVENT_NAVIGATION', (data) => {          
           if (data['KEY_SCREEN_ID'] === screenID && data['KEY_ON'] === 'ON_COMPONENT_RESULT') {
             console.warn(screenID);
             navigator.result(

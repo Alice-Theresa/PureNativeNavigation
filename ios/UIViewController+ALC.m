@@ -51,4 +51,8 @@
     self.resultData = data;
 }
 
+- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
+  
+}
+
 @end

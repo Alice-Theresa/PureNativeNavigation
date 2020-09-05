@@ -25,6 +25,7 @@
 		9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9468E9502502309900ED0422 /* UIViewController+ALC.m */; };
 		94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */; };
 		94D44BB624E910B8009E5FA9 /* ALCNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */; };
+		94EC358B2503917C00B658B6 /* UINavigationController+ALC.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EC358A2503917C00B658B6 /* UINavigationController+ALC.m */; };
 		BC6AEF44E924984D76BA7E4E /* libPods-PureNativeNavigation-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B29380FCF7AC5FE5A95F25C /* libPods-PureNativeNavigation-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ThisIsViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		94D44BB424E910B8009E5FA9 /* ALCNativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCNativeViewController.h; sourceTree = "<group>"; };
 		94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCNativeViewController.m; sourceTree = "<group>"; tabWidth = 4; };
+		94EC35892503917C00B658B6 /* UINavigationController+ALC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ALC.h"; sourceTree = "<group>"; };
+		94EC358A2503917C00B658B6 /* UINavigationController+ALC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ALC.m"; sourceTree = "<group>"; };
 		9A968FB15FBCC56031729861 /* libPods-PureNativeNavigation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PureNativeNavigation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E340233D88E411911EF7F83 /* Pods-PureNativeNavigation-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PureNativeNavigation-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-PureNativeNavigation-tvOS/Pods-PureNativeNavigation-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A9FE07C95A5184D4CFF6E887 /* Pods-PureNativeNavigation-PureNativeNavigationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PureNativeNavigation-PureNativeNavigationTests.release.xcconfig"; path = "Target Support Files/Pods-PureNativeNavigation-PureNativeNavigationTests/Pods-PureNativeNavigation-PureNativeNavigationTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				94598DDC24EA87A0000825E1 /* ALCReactViewController.m */,
 				9468E94F2502309900ED0422 /* UIViewController+ALC.h */,
 				9468E9502502309900ED0422 /* UIViewController+ALC.m */,
+				94EC35892503917C00B658B6 /* UINavigationController+ALC.h */,
+				94EC358A2503917C00B658B6 /* UINavigationController+ALC.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -601,6 +606,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */,
 				94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */,
+				94EC358B2503917C00B658B6 /* UINavigationController+ALC.m in Sources */,
 				94598DDD24EA87A0000825E1 /* ALCReactViewController.m in Sources */,
 				9444B8EF24E8E94300A4AFE2 /* ALCNavigationBridge.m in Sources */,
 				9444B8F024E8E94300A4AFE2 /* ALCNavigationManager.m in Sources */,

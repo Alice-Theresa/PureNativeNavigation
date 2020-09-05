@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data;
 
+- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode;
+
 @end
 
 NS_ASSUME_NONNULL_END
