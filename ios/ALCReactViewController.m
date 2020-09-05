@@ -37,15 +37,14 @@
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
 }
 
-- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
+- (void)didReceiveResultData:(NSDictionary *)data type:(NSString *)type {
     [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
-     @{
-       @"KEY_ON": @"ON_COMPONENT_RESULT",
-       @"KEY_REQUEST_CODE": @(requestCode),
-       @"KEY_RESULT_CODE": @(resultCode),
-       @"KEY_RESULT_DATA": data ?: [NSNull null],
-       @"KEY_SCREEN_ID": self.screenID
-     }];
+    @{
+      @"KEY_ON": @"ON_COMPONENT_RESULT",
+      @"result_type" : type,
+      @"KEY_RESULT_DATA": data ?: [NSNull null],
+      @"KEY_SCREEN_ID": self.screenID
+    }];
 }
 
 @end

@@ -9,23 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ALCSetResultDelegate <NSObject>
-
-- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode;
-
-@end
-
 @interface UIViewController (ALC)
 
 @property (nonatomic, copy, readonly) NSString *screenID;
 
-@property (nonatomic, assign) NSInteger resultCode;
-@property (nonatomic, assign) NSInteger requestCode;
-@property (nonatomic, copy  ) NSDictionary *resultData;
+@property (nonatomic, copy) NSDictionary *resultData;
 
-- (void)setResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data;
-
-- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode;
+- (void)didReceiveResultData:(NSDictionary *)data type:(NSString *)type;
 
 @end
 

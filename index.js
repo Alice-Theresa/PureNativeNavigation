@@ -29,23 +29,21 @@ function withNavigator(moduleName) {
     function FC(props, ref) {
       const { screenID } = props
       const navigator = new Navigator(screenID, moduleName)
-
       useEffect(() => {
-        const subscription = EventEmitter.addListener('EVENT_NAVIGATION', (data) => {          
+        const subscription = EventEmitter.addListener('EVENT_NAVIGATION', (data) => {
           if (data['KEY_SCREEN_ID'] === screenID && data['KEY_ON'] === 'ON_COMPONENT_RESULT') {
-            console.warn(screenID);
-            navigator.result(
-              data['KEY_REQUEST_CODE'],
-              data['KEY_RESULT_CODE'],
-              data['KEY_RESULT_DATA']
-            )
+            if (data['result_type'] === 'cancel') {
+              navigator.unmount()
+            } else {
+              navigator.result(data['KEY_RESULT_DATA'])
+            }
           }
         })
         return () => {
           subscription.remove()
-          navigator.unmount()
         }
       }, [])
+      
       const injected = {
         navigator
       }

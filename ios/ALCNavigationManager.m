@@ -43,6 +43,7 @@
     if (self = [super init]) {
         _nativeModules = [[NSMutableDictionary alloc] init];
         _reactModules = [[NSMutableDictionary alloc] init];
+        _stack = [NSMutableArray array];
     }
     return self;
 }
@@ -88,5 +89,23 @@
   return [RCTConvert UIImage:json];
 }
 
+- (void)push:(UIViewController *)vc {
+    if ([self.stack containsObject:vc]) {
+        UIViewController *last = self.stack.lastObject;
+        [self.stack removeLastObject];
+        UIViewController *vc = self.stack.lastObject;
+        if (last.resultData) {
+            [vc didReceiveResultData:last.resultData type:@"ok"];
+        } else {
+            [vc didReceiveResultData:@{} type:@"cancel"];
+        }
+    } else {
+        [self.stack addObject:vc];
+    }
+}
+
+- (void)clear {
+    [self.stack removeAllObjects];
+}
 
 @end

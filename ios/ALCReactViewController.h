@@ -10,11 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ALCReactViewController : UIViewController <ALCSetResultDelegate>
+@interface ALCReactViewController : UIViewController
 
 - (instancetype)initWithModuleName:(NSString *)pageName options:(NSDictionary *)options;
-
-- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode;
 
 @end
 

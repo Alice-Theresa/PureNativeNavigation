@@ -2,57 +2,59 @@ import { NativeModules } from 'react-native'
 
 const NavigationBridge = NativeModules.ALCNavigationBridge
 
-
 export class Navigator {
-
   constructor(screenID, moduleName) {
     this.screenID = screenID
     this.moduleName = moduleName
     this.resultListeners = []
   }
 
-  waitResult(requestCode) {
+  waitResult() {
     return new Promise((resolve) => {
-      const listener = (reqCode, resultCode, data) => {
-        if (requestCode === reqCode) {
-          resolve([resultCode, data])
-          const index = this.resultListeners.indexOf(listener)
-          if (index !== -1) {
-            this.resultListeners.splice(index, 1)
-          }
+      const listener = (data) => {
+        resolve(['ok', data])
+        const index = this.resultListeners.indexOf(listener)
+        if (index !== -1) {
+          this.resultListeners.splice(index, 1)
         }
       }
       listener.cancel = () => {
-        resolve(['RESULT_CANCEL', null])
+        resolve(['cancel', null])
+        const index = this.resultListeners.indexOf(listener)
+        if (index !== -1) {
+          this.resultListeners.splice(index, 1)
+        }
       }
       this.resultListeners.push(listener)
-      console.warn(this.screenID + ' push ' + this.resultListeners.length);
+      console.warn('push ' + this.resultListeners.length)
     })
   }
 
-  result(requestCode, resultCode, data) {
-    console.warn(this.screenID + ' ' + this.resultListeners.length);
+  result(data) {
     this.resultListeners.forEach((listener) => {
-      listener(requestCode, resultCode, data)
+      listener(data)
     })
   }
 
   unmount = () => {
+    console.warn('unmount ' + this.screenID + ' '+ this.resultListeners.length)
     this.resultListeners.forEach((listener) => {
       listener.cancel()
     })
   }
 
-  setResult(resultCode, data) {
-    NavigationBridge.setResult(this.screenID, resultCode, data)
+  setResult(data) {
+    NavigationBridge.setResult(data)
   }
 
   push = async (component, options) => {
+    console.warn('push ' + this.screenID);
     NavigationBridge.push(component, options)
-    return await this.waitResult(0)
+    return await this.waitResult()
   }
 
   pop = () => {
+    console.warn('pop ' + this.screenID);
     NavigationBridge.pop()
   }
 

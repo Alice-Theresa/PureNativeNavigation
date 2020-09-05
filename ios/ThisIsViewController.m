@@ -8,7 +8,6 @@
 #import "ThisIsViewController.h"
 #import "ALCNavigationManager.h"
 #import "UIViewController+ALC.h"
-#import "UINavigationController+ALC.h"
 
 @interface ThisIsViewController ()
 
@@ -22,14 +21,14 @@
     UIButton *push = [UIButton buttonWithType:UIButtonTypeSystem];
     [push setTitle:@"push RN" forState:UIControlStateNormal];
     push.center = self.view.center;
-    push.bounds = CGRectMake(0, 0, 200, 120);
+    push.bounds = CGRectMake(0, 0, 200, 60);
     [push addTarget:self action:@selector(go2RN) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:push];
     
     UIButton *pop = [UIButton buttonWithType:UIButtonTypeSystem];
-    [pop setTitle:@"pop RN" forState:UIControlStateNormal];
+    [pop setTitle:@"pop" forState:UIControlStateNormal];
     pop.center = CGPointMake(self.view.center.x, self.view.center.y + 60);
-    pop.bounds = CGRectMake(0, 0, 200, 120);
+    pop.bounds = CGRectMake(0, 0, 200, 60);
     [pop addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pop];
 }
@@ -40,11 +39,11 @@
 }
 
 - (void)pop {
-    [self setResultCode:10 resultData:@{@"test": @"native"}];
-    [self.navigationController alc_popViewControllerAnimated:YES];
+    self.resultData = @{@"test": @"native"};
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
+- (void)didReceiveResultData:(NSDictionary *)data type:(nonnull NSString *)type{
     NSLog(@"%@", data);
 }
 

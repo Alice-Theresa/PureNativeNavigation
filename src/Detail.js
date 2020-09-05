@@ -14,13 +14,13 @@ const Detail = (props) => {
         title="push detail"
         onPress={async () => {
           const resp = await props.navigator.push('Detail')
-          console.warn(resp);
+          console.warn(resp)
         }}
       />
       <Button
         title="pop"
         onPress={() => {
-          props.navigator.setResult(7, { qwe: 123 })
+          props.navigator.setResult({ qwe: 123 })
           props.navigator.pop()
         }}
       />

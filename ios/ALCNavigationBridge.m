@@ -10,7 +10,7 @@
 #import "ALCNavigationManager.h"
 #import <React/RCTView.h>
 #import "UIViewController+ALC.h"
-
+#import "ALCNavigationController.h"
 #import "ALCReactViewController.h"
 
 @interface  ALCNavigationBridge ()
@@ -43,6 +43,7 @@ RCT_EXPORT_MODULE(ALCNavigationBridge)
 }
 
 RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
+    [self.manager clear];
     NSDictionary *root = rootTree[@"root"];
     NSArray *tabs = root[@"tabs"][@"children"];
     NSMutableArray *controllers = [NSMutableArray array];
@@ -51,7 +52,7 @@ RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
         NSString *title = tab[@"title"];
         NSDictionary *icon = tab[@"icon"];
         UIViewController *viewController = [self.manager fetchViewController:component params:nil];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+        ALCNavigationController *nav = [[ALCNavigationController alloc] initWithRootViewController:viewController];
         nav.title = title;
         nav.tabBarItem.image = [self.manager fetchImage:icon];
         [controllers addObject:nav];
@@ -62,15 +63,11 @@ RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
     window.rootViewController = tbc;
 }
 
-RCT_EXPORT_METHOD(setResult:(NSString *)sceneId resultCode:(NSInteger)resultCode data:(NSDictionary *)data) {
+RCT_EXPORT_METHOD(setResult:(NSDictionary *)data) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
-//    if (nav.viewControllers.count > 1) {
-//        UIViewController *vc = nav.viewControllers[nav.viewControllers.count - 2];
-//        [vc setResultCode:resultCode resultData:data];
-//    }
-    [nav.topViewController setResultCode:resultCode resultData:data];
+    nav.topViewController.resultData = data;
 }
 
 RCT_EXPORT_METHOD(push:(NSString *)pageName params:(NSDictionary *)params) {
@@ -86,12 +83,7 @@ RCT_EXPORT_METHOD(pop) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
-    
-    NSInteger resultCode = nav.topViewController.resultCode;
-    NSInteger requestCode = nav.topViewController.requestCode;
-    NSDictionary *resultData = nav.topViewController.resultData;
     [nav popViewControllerAnimated:YES];
-    [nav.topViewController didReceiveResultCode:resultCode resultData:resultData requestCode:requestCode];
 }
 
 RCT_EXPORT_METHOD(popToRoot) {

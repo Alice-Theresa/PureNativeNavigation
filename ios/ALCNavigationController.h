@@ -1,5 +1,5 @@
 //
-//  UINavigationController+ALC.h
+//  ALCNavigationController.h
 //  PureNativeNavigation
 //
 //  Created by Skylar on 2020/9/5.
@@ -9,9 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UINavigationController (ALC)
-
-- (void)alc_popViewControllerAnimated:(BOOL)animated;
+@interface ALCNavigationController : UINavigationController
 
 @end
 

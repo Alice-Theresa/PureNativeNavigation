@@ -11,30 +11,12 @@
 
 @implementation UIViewController (ALC)
 
-- (void)setResultCode:(NSInteger)resultCode {
-    objc_setAssociatedObject(self, @selector(resultCode),@(resultCode), OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (NSInteger)resultCode {
-    NSNumber *code = objc_getAssociatedObject(self, _cmd);
-    return [code integerValue];
-}
-
 - (void)setResultData:(NSDictionary *)data {
     objc_setAssociatedObject(self, @selector(resultData), data, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (NSDictionary *)resultData {
     return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setRequestCode:(NSInteger)requestCode {
-    objc_setAssociatedObject(self, @selector(requestCode), @(requestCode), OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (NSInteger)requestCode {
-    NSNumber *code = objc_getAssociatedObject(self, _cmd);
-    return [code integerValue];
 }
 
 - (NSString *)screenID {
@@ -46,12 +28,7 @@
      return obj;
 }
 
-- (void)setResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data {
-    self.resultCode = resultCode;
-    self.resultData = data;
-}
-
-- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
+- (void)didReceiveResultData:(NSDictionary *)data type:(nonnull NSString *)type {
   
 }
 
