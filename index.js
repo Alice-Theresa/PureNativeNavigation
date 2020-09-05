@@ -30,12 +30,12 @@ function withNavigator(moduleName) {
       const { screenID } = props
       const navigator = new Navigator(screenID, moduleName)
       useEffect(() => {
-        const subscription = EventEmitter.addListener('EVENT_NAVIGATION', (data) => {
-          if (data['KEY_SCREEN_ID'] === screenID && data['KEY_ON'] === 'ON_COMPONENT_RESULT') {
+        const subscription = EventEmitter.addListener('NavigationEvent', (data) => {
+          if (data['screen_id'] === screenID && data['event'] === 'component_result') {
             if (data['result_type'] === 'cancel') {
               navigator.unmount()
             } else {
-              navigator.result(data['KEY_RESULT_DATA'])
+              navigator.result(data['result_data'])
             }
           }
         })

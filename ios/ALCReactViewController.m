@@ -38,12 +38,12 @@
 }
 
 - (void)didReceiveResultData:(NSDictionary *)data type:(NSString *)type {
-    [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
+    [ALCNavigationManager sendEvent:@"NavigationEvent" data:
     @{
-      @"KEY_ON": @"ON_COMPONENT_RESULT",
+      @"event": @"component_result",
       @"result_type" : type,
-      @"KEY_RESULT_DATA": data ?: [NSNull null],
-      @"KEY_SCREEN_ID": self.screenID
+      @"result_data": data ?: [NSNull null],
+      @"screen_id": self.screenID
     }];
 }
 

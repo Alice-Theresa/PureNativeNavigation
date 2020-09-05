@@ -33,8 +33,8 @@
     @{
       @"KEY_ON": @"ON_COMPONENT_RESULT",
       @"result_type" : type,
-      @"KEY_RESULT_DATA": data ?: [NSNull null],
-      @"KEY_SCREEN_ID": self.screenID
+      @"result_data": data ?: [NSNull null],
+      @"screen_id": self.screenID
     }];
 }
 

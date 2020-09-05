@@ -39,7 +39,7 @@ RCT_EXPORT_MODULE(ALCNavigationBridge)
 }
 
 - (NSArray<NSString *> *)supportedEvents {
-    return @[@"EVENT_NAVIGATION"];
+    return @[@"NavigationEvent"];
 }
 
 RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
