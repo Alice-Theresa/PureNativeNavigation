@@ -21,6 +21,15 @@
 
 @implementation ALCNavigationManager
 
++ (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data {
+    ALCNavigationManager *manager = [ALCNavigationManager shared];
+    RCTBridge *bride = manager.bridge;
+    if (bride.valid) {
+        RCTEventEmitter *emitter = [bride moduleForName:@"ALCNavigationBridge"];
+        [emitter sendEventWithName:eventName body:data];
+    }
+}
+
 + (instancetype)shared {
     static ALCNavigationManager *manager;
     static dispatch_once_t onceToken;
@@ -70,11 +79,7 @@
         vc = [[clazz alloc] initWithModuleName:pageName props:params];
     } else {
         NSDictionary *options = [self reactModuleOptionsForKey:pageName];
-        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:self.bridge
-                                                         moduleName:pageName
-                                                  initialProperties:params];
         vc = [[ALCReactViewController alloc] initWithModuleName:pageName options:options];
-        vc.view = rootView;
     }
     return vc;
 }
@@ -83,13 +88,5 @@
   return [RCTConvert UIImage:json];
 }
 
-+ (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data {
-    ALCNavigationManager *manager = [ALCNavigationManager shared];
-    RCTBridge *bride = manager.bridge;
-    if (bride.valid) {
-        RCTEventEmitter *emitter = [bride moduleForName:@"ALCNavigationBridge"];
-        [emitter sendEventWithName:eventName body:data];
-    }
-}
 
 @end

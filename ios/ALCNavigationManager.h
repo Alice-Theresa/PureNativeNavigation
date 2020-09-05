@@ -16,6 +16,8 @@
 @property (nonatomic, strong, readonly) NSMutableDictionary *nativeModules;
 @property (nonatomic, strong, readonly) NSMutableDictionary *reactModules;
 
++ (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data;
+
 + (instancetype)shared;
 
 - (void)registerNativeModule:(NSString *)moduleName forController:(Class)clazz;
@@ -28,8 +30,5 @@
 
 - (UIViewController *)fetchViewController:(NSString *)pageName params:(NSDictionary *)params;
 - (UIImage *)fetchImage:(NSDictionary *)json;
-
-
-+ (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data;
 
 @end

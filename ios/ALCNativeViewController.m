@@ -31,10 +31,11 @@
 - (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
     [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
      @{
-       @"KEY_ON": @0,
+       @"KEY_ON": @"ON_COMPONENT_RESULT",
        @"KEY_REQUEST_CODE": @(requestCode),
        @"KEY_RESULT_CODE": @(resultCode),
        @"KEY_RESULT_DATA": data ?: [NSNull null],
+       @"KEY_SCREEN_ID": self.screenID
      }];
 }
 

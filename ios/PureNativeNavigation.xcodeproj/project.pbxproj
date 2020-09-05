@@ -70,7 +70,7 @@
 		9444B8ED24E8E94200A4AFE2 /* ALCNavigationBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALCNavigationBridge.h; sourceTree = "<group>"; };
 		9444B8EE24E8E94300A4AFE2 /* ALCNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALCNavigationManager.h; sourceTree = "<group>"; };
 		94598DDB24EA87A0000825E1 /* ALCReactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCReactViewController.h; sourceTree = "<group>"; };
-		94598DDC24EA87A0000825E1 /* ALCReactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALCReactViewController.m; sourceTree = "<group>"; };
+		94598DDC24EA87A0000825E1 /* ALCReactViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCReactViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		9468E94F2502309900ED0422 /* UIViewController+ALC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ALC.h"; sourceTree = "<group>"; };
 		9468E9502502309900ED0422 /* UIViewController+ALC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ALC.m"; sourceTree = "<group>"; };
 		94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThisIsViewController.h; sourceTree = "<group>"; };

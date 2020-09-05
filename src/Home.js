@@ -1,21 +1,19 @@
 import React from 'react'
 import { View, Button } from 'react-native'
 
-import { Navigatior } from '../index'
-
-const Home = () => {
+const Home = (props) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
       <Button
         title="push detail and hide bar"
         onPress={() => {
-          Navigatior.push('NoNavigationBar')
+          props.navigator.push('NoNavigationBar')
         }}
       />
       <Button
         title="push detail"
         onPress={async () => {
-          const resp = await Navigatior.push('Detail')
+          const resp = await props.navigator.push('Detail')
           console.warn('----')
           console.warn(resp)
         }}
@@ -23,7 +21,7 @@ const Home = () => {
       <Button
         title="push native"
         onPress={async () => {
-          const resp = await Navigatior.push('NativeViewController', {
+          const resp = await props.navigator.push('NativeViewController', {
             title: 'Native'
           })
           console.warn('----')
@@ -34,7 +32,7 @@ const Home = () => {
       <Button
         title="present"
         onPress={() => {
-          Navigatior.present('Present')
+          props.navigator.present('Present')
         }}
       />
     </View>

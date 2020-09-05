@@ -5,9 +5,9 @@
 //  Created by skylar on 2020/8/17.
 //
 
+#import <React/RCTRootView.h>
 #import "ALCReactViewController.h"
 #import "ALCNavigationManager.h"
-#import "UIViewController+ALC.h"
 
 @interface ALCReactViewController ()
 
@@ -22,6 +22,12 @@
         NSNumber *hideNavigationBar = options[@"hideNavigationBar"];
         _hideNavigationBar = hideNavigationBar.boolValue;
         self.title = options[@"title"];
+        NSMutableDictionary *copied = [options mutableCopy];
+        [copied setObject:self.screenID forKey:@"screenID"];
+        RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:[ALCNavigationManager shared].bridge
+                                                         moduleName:pageName
+                                                  initialProperties:copied];
+        self.view = rootView;
     }
     return self;
 }
@@ -36,8 +42,9 @@
      @{
        @"KEY_ON": @"ON_COMPONENT_RESULT",
        @"KEY_REQUEST_CODE": @(requestCode),
-       @"KEY_RESULT_CODE": @(self.resultCode),
-       @"KEY_RESULT_DATA": self.resultData ?: [NSNull null],
+       @"KEY_RESULT_CODE": @(resultCode),
+       @"KEY_RESULT_DATA": data ?: [NSNull null],
+       @"KEY_SCREEN_ID": self.screenID
      }];
 }
 

@@ -1,34 +1,33 @@
 import React from 'react'
 import { View, Button } from 'react-native'
 
-import { Navigatior } from '../index'
-
-const Detail = () => {
+const Detail = (props) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Button
         title="push detail and hide bar"
         onPress={() => {
-          Navigatior.push('NoNavigationBar')
+          props.navigator.push('NoNavigationBar')
         }}
       />
       <Button
         title="push detail"
-        onPress={() => {
-          Navigatior.push('Detail')
+        onPress={async () => {
+          const resp = await props.navigator.push('Detail')
+          console.warn(resp);
         }}
       />
       <Button
         title="pop"
         onPress={() => {
-          Navigatior.setResult(7, { qwe: 123 })
-          Navigatior.pop()
+          props.navigator.setResult(7, { qwe: 123 })
+          props.navigator.pop()
         }}
       />
       <Button
         title="pop to root"
         onPress={() => {
-          Navigatior.popToRoot()
+          props.navigator.popToRoot()
         }}
       />
     </View>

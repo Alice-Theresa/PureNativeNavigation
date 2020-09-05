@@ -1,21 +1,19 @@
 import React from 'react'
 import { View, Button } from 'react-native'
 
-import { Navigatior } from '../index'
-
-const Setting = () => {
+const Setting = (props) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
       <Button
         title="switch tab"
         onPress={() => {
-          Navigatior.switchTab(0)
+          props.navigator.switchTab(0)
         }}
       />
       <Button
         title="push native"
         onPress={() => {
-          Navigatior.push('NativeViewController', {
+          props.navigator.push('NativeViewController', {
             title: 'Native'
           })
         }}
@@ -23,7 +21,7 @@ const Setting = () => {
       <Button
         title="push detail"
         onPress={() => {
-          Navigatior.push('Detail')
+          props.navigator.push('Detail')
         }}
       />
     </View>

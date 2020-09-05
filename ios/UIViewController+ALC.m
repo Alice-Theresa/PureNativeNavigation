@@ -12,10 +12,6 @@
 @implementation UIViewController (ALC)
 
 - (void)setResultCode:(NSInteger)resultCode {
-    UIViewController *presenting = self.presentingViewController;
-    if (presenting) {
-        objc_setAssociatedObject(presenting.presentedViewController, @selector(resultCode), @(resultCode), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    }
     objc_setAssociatedObject(self, @selector(resultCode),@(resultCode), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
@@ -25,10 +21,6 @@
 }
 
 - (void)setResultData:(NSDictionary *)data {
-    UIViewController *presenting = self.presentingViewController;
-    if (presenting) {
-        objc_setAssociatedObject(presenting.presentedViewController, @selector(resultData), data, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    }
     objc_setAssociatedObject(self, @selector(resultData), data, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
@@ -45,26 +37,18 @@
     return [code integerValue];
 }
 
+- (NSString *)screenID {
+    id obj = objc_getAssociatedObject(self, _cmd);
+    if (!obj) {
+        obj = [[NSUUID UUID] UUIDString];
+        objc_setAssociatedObject(self, @selector(screenID), obj, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    }
+     return obj;
+}
+
 - (void)setResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data {
     self.resultCode = resultCode;
     self.resultData = data;
 }
-
-//- (void)didReceiveResultCode:(NSInteger)resultCode resultData:(NSDictionary *)data requestCode:(NSInteger)requestCode {
-//    if ([self isKindOfClass:[UITabBarController class]]) {
-//        UIViewController *child = ((UITabBarController *)self).selectedViewController;
-//        [child didReceiveResultCode:resultCode resultData:data requestCode:requestCode];
-//    } else if ([self isKindOfClass:[UINavigationController class]]) {
-//        UIViewController *child = ((UINavigationController *)self).topViewController;
-//        [child didReceiveResultCode:resultCode resultData:data requestCode:requestCode];
-//    } else {
-//        NSArray *children = self.childViewControllers;
-//        if (children) {
-//            for (UIViewController *vc in children) {
-//                [vc didReceiveResultCode:resultCode resultData:data requestCode:requestCode];
-//            }
-//        }
-//    }
-//}
 
 @end

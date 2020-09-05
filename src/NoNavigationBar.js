@@ -1,33 +1,31 @@
 import React from 'react'
 import { View, Button } from 'react-native'
 
-import { Navigatior } from '../index'
-
-const NoNavigationBar = () => {
+const NoNavigationBar = (props) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Button
         title="push detail and hide bar"
         onPress={() => {
-          Navigatior.push('NoNavigationBar')
+          props.navigator.push('NoNavigationBar')
         }}
       />
       <Button
         title="push detail"
         onPress={() => {
-          Navigatior.push('Detail')
+          props.navigator.push('Detail')
         }}
       />
       <Button
         title="pop"
         onPress={() => {
-          Navigatior.pop()
+          props.navigator.pop()
         }}
       />
       <Button
         title="pop to root"
         onPress={() => {
-          Navigatior.popToRoot()
+          props.navigator.popToRoot()
         }}
       />
     </View>

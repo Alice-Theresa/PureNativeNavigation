@@ -82,8 +82,13 @@ RCT_EXPORT_METHOD(pop) {
     UIWindow *window = RCTSharedApplication().delegate.window;
     UITabBarController *tbc = (UITabBarController *)window.rootViewController;
     UINavigationController *nav = tbc.selectedViewController;
-    [nav.topViewController didReceiveResultCode:0 resultData:@{} requestCode:0];
+    NSInteger resultCode = nav.topViewController.resultCode;
+    NSInteger requestCode = nav.topViewController.requestCode;
+    NSDictionary *resultData = nav.topViewController.resultData;
     [nav popViewControllerAnimated:YES];
+    [((id<ALCSetResultDelegate>)(nav.topViewController)) didReceiveResultCode:resultCode
+                                                                   resultData:resultData
+                                                                  requestCode:requestCode];
 }
 
 RCT_EXPORT_METHOD(popToRoot) {
