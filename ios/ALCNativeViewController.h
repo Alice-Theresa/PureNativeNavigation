@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithModuleName:(NSString *)pageName props:(NSDictionary *)props;
 
+- (void)setResultData:(NSDictionary *)data;
+
 @end
 
 NS_ASSUME_NONNULL_END

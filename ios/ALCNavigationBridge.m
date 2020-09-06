@@ -12,6 +12,7 @@
 #import "UIViewController+ALC.h"
 #import "ALCNavigationController.h"
 #import "ALCReactViewController.h"
+#import "ALCStackModel.h"
 
 @interface  ALCNavigationBridge ()
 
@@ -64,10 +65,7 @@ RCT_EXPORT_METHOD(setRoot:(NSDictionary *)rootTree) {
 }
 
 RCT_EXPORT_METHOD(setResult:(NSDictionary *)data) {
-    UIWindow *window = RCTSharedApplication().delegate.window;
-    UITabBarController *tbc = (UITabBarController *)window.rootViewController;
-    UINavigationController *nav = tbc.selectedViewController;
-    nav.topViewController.resultData = data;
+    ((ALCStackModel *)self.manager.stack.lastObject).data = data;
 }
 
 RCT_EXPORT_METHOD(push:(NSString *)pageName params:(NSDictionary *)params) {

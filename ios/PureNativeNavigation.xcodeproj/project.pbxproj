@@ -23,6 +23,7 @@
 		9444B8EF24E8E94300A4AFE2 /* ALCNavigationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9444B8EB24E8E94200A4AFE2 /* ALCNavigationBridge.m */; };
 		9444B8F024E8E94300A4AFE2 /* ALCNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9444B8EC24E8E94200A4AFE2 /* ALCNavigationManager.m */; };
 		94598DDD24EA87A0000825E1 /* ALCReactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94598DDC24EA87A0000825E1 /* ALCReactViewController.m */; };
+		94614E3825048E3C006AB8C3 /* ALCStackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94614E3725048E3C006AB8C3 /* ALCStackModel.m */; };
 		9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9468E9502502309900ED0422 /* UIViewController+ALC.m */; };
 		94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */; };
 		94D44BB624E910B8009E5FA9 /* ALCNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */; };
@@ -74,6 +75,8 @@
 		9444B8EE24E8E94300A4AFE2 /* ALCNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALCNavigationManager.h; sourceTree = "<group>"; };
 		94598DDB24EA87A0000825E1 /* ALCReactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCReactViewController.h; sourceTree = "<group>"; };
 		94598DDC24EA87A0000825E1 /* ALCReactViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCReactViewController.m; sourceTree = "<group>"; tabWidth = 4; };
+		94614E3625048E3C006AB8C3 /* ALCStackModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCStackModel.h; sourceTree = "<group>"; };
+		94614E3725048E3C006AB8C3 /* ALCStackModel.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCStackModel.m; sourceTree = "<group>"; tabWidth = 4; };
 		9468E94F2502309900ED0422 /* UIViewController+ALC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ALC.h"; sourceTree = "<group>"; };
 		9468E9502502309900ED0422 /* UIViewController+ALC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ALC.m"; sourceTree = "<group>"; };
 		94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThisIsViewController.h; sourceTree = "<group>"; };
@@ -151,18 +154,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */,
 				94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */,
-				9444B8ED24E8E94200A4AFE2 /* ALCNavigationBridge.h */,
-				9444B8EB24E8E94200A4AFE2 /* ALCNavigationBridge.m */,
-				9444B8EE24E8E94300A4AFE2 /* ALCNavigationManager.h */,
-				9444B8EC24E8E94200A4AFE2 /* ALCNavigationManager.m */,
-				94D44BB424E910B8009E5FA9 /* ALCNativeViewController.h */,
-				94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */,
-				94598DDB24EA87A0000825E1 /* ALCReactViewController.h */,
-				94598DDC24EA87A0000825E1 /* ALCReactViewController.m */,
-				940E0D702503BA0B00F50503 /* ALCNavigationController.h */,
-				940E0D712503BA0B00F50503 /* ALCNavigationController.m */,
-				9468E94F2502309900ED0422 /* UIViewController+ALC.h */,
-				9468E9502502309900ED0422 /* UIViewController+ALC.m */,
+				94614E3A25049B67006AB8C3 /* Navigation */,
+				94614E3925049B3C006AB8C3 /* Controller */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -230,6 +223,34 @@
 				2D02E4901E0B4A5D006451C7 /* PureNativeNavigation-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		94614E3925049B3C006AB8C3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				94D44BB424E910B8009E5FA9 /* ALCNativeViewController.h */,
+				94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */,
+				94598DDB24EA87A0000825E1 /* ALCReactViewController.h */,
+				94598DDC24EA87A0000825E1 /* ALCReactViewController.m */,
+				940E0D702503BA0B00F50503 /* ALCNavigationController.h */,
+				940E0D712503BA0B00F50503 /* ALCNavigationController.m */,
+				9468E94F2502309900ED0422 /* UIViewController+ALC.h */,
+				9468E9502502309900ED0422 /* UIViewController+ALC.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		94614E3A25049B67006AB8C3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				9444B8ED24E8E94200A4AFE2 /* ALCNavigationBridge.h */,
+				9444B8EB24E8E94200A4AFE2 /* ALCNavigationBridge.m */,
+				9444B8EE24E8E94300A4AFE2 /* ALCNavigationManager.h */,
+				9444B8EC24E8E94200A4AFE2 /* ALCNavigationManager.m */,
+				94614E3625048E3C006AB8C3 /* ALCStackModel.h */,
+				94614E3725048E3C006AB8C3 /* ALCStackModel.m */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -604,6 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				94614E3825048E3C006AB8C3 /* ALCStackModel.m in Sources */,
 				9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */,
 				940E0D722503BA0B00F50503 /* ALCNavigationController.m in Sources */,
 				94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */,

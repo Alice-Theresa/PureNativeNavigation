@@ -11,6 +11,7 @@
 #import "ALCNavigationManager.h"
 #import "ALCNativeViewController.h"
 #import "ALCReactViewController.h"
+#import "ALCStackModel.h"
 
 @interface ALCNavigationManager()
 
@@ -81,6 +82,7 @@
     } else {
         NSDictionary *options = [self reactModuleOptionsForKey:pageName];
         vc = [[ALCReactViewController alloc] initWithModuleName:pageName options:options];
+//        vc.presentationController.delegate = vc;
     }
     return vc;
 }
@@ -90,17 +92,18 @@
 }
 
 - (void)push:(UIViewController *)vc {
-    if ([self.stack containsObject:vc]) {
-        UIViewController *last = self.stack.lastObject;
-        [self.stack removeLastObject];
-        UIViewController *vc = self.stack.lastObject;
-        if (last.resultData) {
-            [vc didReceiveResultData:last.resultData type:@"ok"];
+    ALCStackModel *model = [[ALCStackModel alloc] initWithScreenID:vc.screenID];
+    if ([self.stack containsObject:model]) {
+        NSUInteger index = [self.stack indexOfObject:model];
+        ALCStackModel *last = self.stack.lastObject;
+        [self.stack removeObjectsInRange:NSMakeRange(index + 1, self.stack.count - (index + 1))];
+        if (last.data) {
+            [vc didReceiveResultData:last.data type:@"ok"];
         } else {
             [vc didReceiveResultData:@{} type:@"cancel"];
         }
     } else {
-        [self.stack addObject:vc];
+        [self.stack addObject:model];
     }
 }
 

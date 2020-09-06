@@ -9,6 +9,8 @@
 #import <React/RCTBridge.h>
 #import <React/RCTEventEmitter.h>
 
+@class ALCStackModel;
+
 @interface ALCNavigationManager : NSObject
 
 @property (nonatomic, strong) RCTBridge *bridge;
@@ -16,7 +18,7 @@
 @property (nonatomic, strong, readonly) NSMutableDictionary *nativeModules;
 @property (nonatomic, strong, readonly) NSMutableDictionary *reactModules;
 
-@property (nonatomic, strong) NSMutableArray<UIViewController *> *stack;
+@property (nonatomic, strong) NSMutableArray<ALCStackModel *> *stack;
 
 + (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data;
 

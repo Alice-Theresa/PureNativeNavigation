@@ -7,6 +7,7 @@
 
 #import "ALCNativeViewController.h"
 #import "ALCNavigationManager.h"
+#import "ALCStackModel.h"
 
 @interface ALCNativeViewController ()
 
@@ -28,10 +29,14 @@
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
 }
 
+- (void)setResultData:(NSDictionary *)data {
+    ((ALCStackModel *)[ALCNavigationManager shared].stack.lastObject).data = data;
+}
+
 - (void)didReceiveResultData:(NSDictionary *)data type:(NSString *)type {
-    [ALCNavigationManager sendEvent:@"EVENT_NAVIGATION" data:
+    [ALCNavigationManager sendEvent:@"NavigationEvent" data:
     @{
-      @"KEY_ON": @"ON_COMPONENT_RESULT",
+      @"event": @"component_result",
       @"result_type" : type,
       @"result_data": data ?: [NSNull null],
       @"screen_id": self.screenID

@@ -9,7 +9,7 @@
 #import "ALCReactViewController.h"
 #import "ALCNavigationManager.h"
 
-@interface ALCReactViewController ()
+@interface ALCReactViewController () <UIAdaptivePresentationControllerDelegate>
 
 @property (nonatomic, assign) BOOL hideNavigationBar;
 

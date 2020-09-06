@@ -11,14 +11,6 @@
 
 @implementation UIViewController (ALC)
 
-- (void)setResultData:(NSDictionary *)data {
-    objc_setAssociatedObject(self, @selector(resultData), data, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (NSDictionary *)resultData {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
 - (NSString *)screenID {
     id obj = objc_getAssociatedObject(self, _cmd);
     if (!obj) {

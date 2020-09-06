@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *screenID;
 
-@property (nonatomic, copy) NSDictionary *resultData;
-
 - (void)didReceiveResultData:(NSDictionary *)data type:(NSString *)type;
 
 @end

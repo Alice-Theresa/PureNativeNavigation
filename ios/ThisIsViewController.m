@@ -39,7 +39,7 @@
 }
 
 - (void)pop {
-    self.resultData = @{@"test": @"native"};
+    [self setResultData:@{@"some_key": @"some_value"}];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
