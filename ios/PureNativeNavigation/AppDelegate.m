@@ -14,6 +14,7 @@
 
 #import "ALCNavigationManager.h"
 #import "ThisIsViewController.h"
+#import "SecViewController.h"
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -38,6 +39,8 @@ static void InitializeFlipper(UIApplication *application) {
                                                                launchOptions:launchOptions];
   [[ALCNavigationManager shared] registerNativeModule:@"NativeViewController"
                                         forController:[ThisIsViewController class]];
+  [[ALCNavigationManager shared] registerNativeModule:@"SecViewController"
+                                        forController:[SecViewController class]];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];

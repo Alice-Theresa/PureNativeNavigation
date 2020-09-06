@@ -1,19 +1,19 @@
 //
-//  NativeViewController.m
+//  SecViewController.m
 //  PureNativeNavigation
 //
-//  Created by Skylar on 2020/8/16.
+//  Created by Skylar on 2020/9/6.
 //
 
-#import "ThisIsViewController.h"
+#import "SecViewController.h"
 #import "ALCNavigationManager.h"
 #import "UIViewController+ALC.h"
 
-@interface ThisIsViewController ()
+@interface SecViewController ()
 
 @end
 
-@implementation ThisIsViewController
+@implementation SecViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,17 +34,16 @@
 }
 
 - (void)go2RN {
-    UIViewController *vc = [[ALCNavigationManager shared] fetchViewController:@"SecViewController" params:nil];
+    UIViewController *vc = [[ALCNavigationManager shared] fetchViewController:@"Detail" params:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)pop {
-    [self setResultData:@{@"some_key": @"some_value"}];
+    [self setResultData:@{@"some_key": @"sec_value"}];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveResultData:(NSDictionary *)data type:(nonnull NSString *)type {
     NSLog(@"%@", data);
 }
-
 @end

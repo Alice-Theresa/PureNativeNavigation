@@ -12,8 +12,8 @@ const NavigationBridge = NativeModules.ALCNavigationBridge
 const registerComponent = (appKey, component) => {
   let options = component.navigationItem || {}
   NavigationBridge.registerReactComponent(appKey, options)
-  let RootComponent = withNavigator(appKey)(component)
-  AppRegistry.registerComponent(appKey, () => RootComponent)
+  let withComponent = withNavigator(appKey)(component)
+  AppRegistry.registerComponent(appKey, () => withComponent)
 }
 
 registerComponent('Home', Home)
@@ -43,7 +43,7 @@ function withNavigator(moduleName) {
           subscription.remove()
         }
       }, [])
-      
+
       const injected = {
         navigator
       }

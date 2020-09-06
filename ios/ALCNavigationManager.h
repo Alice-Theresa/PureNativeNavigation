@@ -18,7 +18,7 @@
 @property (nonatomic, strong, readonly) NSMutableDictionary *nativeModules;
 @property (nonatomic, strong, readonly) NSMutableDictionary *reactModules;
 
-@property (nonatomic, strong) NSMutableArray<ALCStackModel *> *stack;
+@property (nonatomic, strong, readonly) NSMutableArray<ALCStackModel *> *stack;
 
 + (void)sendEvent:(NSString *)eventName data:(NSDictionary *)data;
 

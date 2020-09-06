@@ -20,9 +20,10 @@
     self.delegate = self;
 }
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
     [[ALCNavigationManager shared] push:viewController];
-    
 }
 
 @end

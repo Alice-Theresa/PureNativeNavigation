@@ -24,6 +24,7 @@
 		9444B8F024E8E94300A4AFE2 /* ALCNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9444B8EC24E8E94200A4AFE2 /* ALCNavigationManager.m */; };
 		94598DDD24EA87A0000825E1 /* ALCReactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94598DDC24EA87A0000825E1 /* ALCReactViewController.m */; };
 		94614E3825048E3C006AB8C3 /* ALCStackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94614E3725048E3C006AB8C3 /* ALCStackModel.m */; };
+		94614E3D2504B9E0006AB8C3 /* SecViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94614E3C2504B9E0006AB8C3 /* SecViewController.m */; };
 		9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9468E9502502309900ED0422 /* UIViewController+ALC.m */; };
 		94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */; };
 		94D44BB624E910B8009E5FA9 /* ALCNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D44BB524E910B8009E5FA9 /* ALCNativeViewController.m */; };
@@ -77,6 +78,8 @@
 		94598DDC24EA87A0000825E1 /* ALCReactViewController.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCReactViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		94614E3625048E3C006AB8C3 /* ALCStackModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALCStackModel.h; sourceTree = "<group>"; };
 		94614E3725048E3C006AB8C3 /* ALCStackModel.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ALCStackModel.m; sourceTree = "<group>"; tabWidth = 4; };
+		94614E3B2504B9E0006AB8C3 /* SecViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecViewController.h; sourceTree = "<group>"; };
+		94614E3C2504B9E0006AB8C3 /* SecViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecViewController.m; sourceTree = "<group>"; };
 		9468E94F2502309900ED0422 /* UIViewController+ALC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ALC.h"; sourceTree = "<group>"; };
 		9468E9502502309900ED0422 /* UIViewController+ALC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ALC.m"; sourceTree = "<group>"; };
 		94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThisIsViewController.h; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				94D44BB124E90A0B009E5FA9 /* ThisIsViewController.h */,
 				94D44BB224E90A0B009E5FA9 /* ThisIsViewController.m */,
+				94614E3B2504B9E0006AB8C3 /* SecViewController.h */,
+				94614E3C2504B9E0006AB8C3 /* SecViewController.m */,
 				94614E3A25049B67006AB8C3 /* Navigation */,
 				94614E3925049B3C006AB8C3 /* Controller */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -627,6 +632,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				94614E3825048E3C006AB8C3 /* ALCStackModel.m in Sources */,
 				9468E9512502309900ED0422 /* UIViewController+ALC.m in Sources */,
+				94614E3D2504B9E0006AB8C3 /* SecViewController.m in Sources */,
 				940E0D722503BA0B00F50503 /* ALCNavigationController.m in Sources */,
 				94D44BB324E90A0B009E5FA9 /* ThisIsViewController.m in Sources */,
 				94598DDD24EA87A0000825E1 /* ALCReactViewController.m in Sources */,

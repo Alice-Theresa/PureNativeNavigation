@@ -6,41 +6,29 @@ export class Navigator {
   constructor(screenID, moduleName) {
     this.screenID = screenID
     this.moduleName = moduleName
-    this.resultListeners = []
+    this.resultListeners = undefined
   }
 
   waitResult() {
     return new Promise((resolve) => {
       const listener = (data) => {
         resolve(['ok', data])
-        const index = this.resultListeners.indexOf(listener)
-        if (index !== -1) {
-          this.resultListeners.splice(index, 1)
-        }
+        this.resultListeners = undefined
       }
       listener.cancel = () => {
         resolve(['cancel', null])
-        const index = this.resultListeners.indexOf(listener)
-        if (index !== -1) {
-          this.resultListeners.splice(index, 1)
-        }
+        this.resultListeners = undefined
       }
-      this.resultListeners.push(listener)
-      console.warn('push ' + this.resultListeners.length)
+      this.resultListeners = listener
     })
   }
 
   result(data) {
-    this.resultListeners.forEach((listener) => {
-      listener(data)
-    })
+    this.resultListeners(data)
   }
 
   unmount = () => {
-    console.warn('unmount ' + this.screenID + ' '+ this.resultListeners.length)
-    this.resultListeners.forEach((listener) => {
-      listener.cancel()
-    })
+    this.resultListeners = undefined
   }
 
   setResult(data) {
@@ -48,13 +36,13 @@ export class Navigator {
   }
 
   push = async (component, options) => {
-    console.warn('push ' + this.screenID);
+    console.warn('push ' + this.screenID)
     NavigationBridge.push(component, options)
     return await this.waitResult()
   }
 
   pop = () => {
-    console.warn('pop ' + this.screenID);
+    console.warn('pop ' + this.screenID)
     NavigationBridge.pop()
   }
 
