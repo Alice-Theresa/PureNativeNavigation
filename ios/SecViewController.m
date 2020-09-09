@@ -39,7 +39,7 @@
 }
 
 - (void)pop {
-    [self setResultData:@{@"some_key": @"sec_value"}];
+    [self setResult:@{@"some_key": @"sec_value"}];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -14,7 +14,6 @@ const Home = (props) => {
         title="push detail"
         onPress={async () => {
           const resp = await props.navigator.push('Detail')
-          console.warn('----')
           console.warn(resp)
         }}
       />
@@ -24,7 +23,6 @@ const Home = (props) => {
           const resp = await props.navigator.push('NativeViewController', {
             title: 'Native'
           })
-          console.warn('----')
           console.warn(resp)
         }}
       />

@@ -6,29 +6,29 @@ export class Navigator {
   constructor(screenID, moduleName) {
     this.screenID = screenID
     this.moduleName = moduleName
-    this.resultListeners = undefined
+    this.resultListener = undefined
   }
 
   waitResult() {
     return new Promise((resolve) => {
       const listener = (data) => {
         resolve(['ok', data])
-        this.resultListeners = undefined
+        this.resultListener = undefined
       }
       listener.cancel = () => {
         resolve(['cancel', null])
-        this.resultListeners = undefined
+        this.resultListener = undefined
       }
-      this.resultListeners = listener
+      this.resultListener = listener
     })
   }
 
-  result(data) {
-    this.resultListeners(data)
+  excute(data) {
+    this.resultListener(data)
   }
 
   unmount = () => {
-    this.resultListeners = undefined
+    this.resultListener.cancel()
   }
 
   setResult(data) {

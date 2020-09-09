@@ -9,6 +9,37 @@ import { Navigator } from './src/Navigator'
 
 const NavigationBridge = NativeModules.ALCNavigationBridge
 
+const EventEmitter = new NativeEventEmitter(NavigationBridge)
+
+const withNavigator = (moduleName) => {
+  return (WrappedComponent) => {
+    const FC = (props, ref) => {
+      const { screenID } = props
+      const navigator = new Navigator(screenID, moduleName)
+      useEffect(() => {
+        const subscription = EventEmitter.addListener('NavigationEvent', (data) => {
+          if (data['screen_id'] === screenID && data['event'] === 'component_result') {
+            if (data['result_type'] === 'cancel') {
+              navigator.unmount()
+            } else {
+              navigator.excute(data['result_data'])
+            }
+          }
+        })
+        return () => {
+          subscription.remove()
+        }
+      }, [])
+      const injected = {
+        navigator
+      }
+      return <WrappedComponent ref={ref} {...props} {...injected} />
+    }
+    const FREC = React.forwardRef(FC)
+    return FREC
+  }
+}
+
 const registerComponent = (appKey, component) => {
   let options = component.navigationItem || {}
   NavigationBridge.registerReactComponent(appKey, options)
@@ -22,37 +53,6 @@ registerComponent('Detail', Detail)
 registerComponent('Present', Present)
 registerComponent('NoNavigationBar', NoNavigationBar)
 
-const EventEmitter = new NativeEventEmitter(NavigationBridge)
-
-function withNavigator(moduleName) {
-  return function (WrappedComponent) {
-    function FC(props, ref) {
-      const { screenID } = props
-      const navigator = new Navigator(screenID, moduleName)
-      useEffect(() => {
-        const subscription = EventEmitter.addListener('NavigationEvent', (data) => {
-          if (data['screen_id'] === screenID && data['event'] === 'component_result') {
-            if (data['result_type'] === 'cancel') {
-              navigator.unmount()
-            } else {
-              navigator.result(data['result_data'])
-            }
-          }
-        })
-        return () => {
-          subscription.remove()
-        }
-      }, [])
-
-      const injected = {
-        navigator
-      }
-      return <WrappedComponent ref={ref} {...props} {...injected} />
-    }
-    const FREC = React.forwardRef(FC)
-    return FREC
-  }
-}
 
 NavigationBridge.setRoot({
   root: {

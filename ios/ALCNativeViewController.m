@@ -29,7 +29,7 @@
     [self.navigationController setNavigationBarHidden:self.hideNavigationBar animated:animated];
 }
 
-- (void)setResultData:(NSDictionary *)data {
+- (void)setResult:(NSDictionary *)data {
     ((ALCStackModel *)[ALCNavigationManager shared].stack.lastObject).data = data;
 }
 
