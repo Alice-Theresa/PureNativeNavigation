@@ -25,7 +25,7 @@
 - (void)navigationController:(UINavigationController *)navigationController
        didShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
-    [[ALCNavigationManager shared] push:viewController];
+    [[ALCNavigationManager shared] push:navigationController vc:viewController];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {

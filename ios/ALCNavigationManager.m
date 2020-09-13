@@ -44,7 +44,7 @@
     if (self = [super init]) {
         _nativeModules = [[NSMutableDictionary alloc] init];
         _reactModules = [[NSMutableDictionary alloc] init];
-        _stack = [NSMutableArray array];
+        _stacks = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -91,24 +91,25 @@
   return [RCTConvert UIImage:json];
 }
 
-- (void)push:(UIViewController *)vc {
+- (void)push:(UINavigationController *)nav vc:(UIViewController *)vc {
     ALCStackModel *model = [[ALCStackModel alloc] initWithScreenID:vc.screenID];
-    if ([self.stack containsObject:model]) {
-        NSUInteger index = [self.stack indexOfObject:model];
-        ALCStackModel *last = self.stack.lastObject;
-        [self.stack removeObjectsInRange:NSMakeRange(index + 1, self.stack.count - (index + 1))];
-        if (last.data) {
-            [vc didReceiveResultData:last.data type:@"ok"];
-        } else {
-            [vc didReceiveResultData:@{} type:@"cancel"];
-        }
-    } else {
-        [self.stack addObject:model];
+    NSMutableArray *stack = [self.stacks valueForKey:nav.screenID];
+    if (![stack containsObject:model]) {
+        [stack addObject:model];
+    } else if (stack.count > 1) {
+       NSUInteger index = [stack indexOfObject:model];
+       ALCStackModel *last = stack.lastObject;
+       [stack removeObjectsInRange:NSMakeRange(index + 1, self.stacks.count - 1)];
+       if (last.data) {
+           [vc didReceiveResultData:last.data type:@"ok"];
+       } else {
+           [vc didReceiveResultData:@{} type:@"cancel"];
+       }
     }
 }
 
 - (void)clear {
-    [self.stack removeAllObjects];
+    [self.stacks removeAllObjects];
 }
 
 @end
